@@ -59,7 +59,8 @@ namespace img_to_db
             var userImage = imgg.ImageToByteArray(Image.FromFile(@filename));
             
             MySqlCommand command = Connection.CreateCommand();
-            command.CommandText = "INSERT INTO img_kek(name,img,filesize) VALUES(?name, @img, ?filesize)"; 
+            command.CommandText = "INSERT INTO img_kek(name,img,filesize) VALUES(?name, @img, ?filesize)";
+            command.Parameters.Add("?name", MySqlDbType.VarChar).Value = flop;
             command.Parameters.AddWithValue("@img", userImage);
             command.Parameters.Add("?filesize", MySqlDbType.Int32).Value = userImage.Length;
 
